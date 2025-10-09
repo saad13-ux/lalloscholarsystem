@@ -77,9 +77,9 @@ if (isset($_POST['print_report'])) {
     $pdf = new FPDF('L', 'mm', 'A4');
     $pdf->AddPage();
 
-    // Logo paths - updated with your actual paths
-    $logo_left = 'C:/xampp/htdocs/lalloscholarsystem/resources/images/lgulallo.png';
-    $logo_right = 'C:/xampp/htdocs/lalloscholarsystem/resources/images/evenbrighter.png';
+   $logo_left  = __DIR__ . '/../../resources/images/lgulallo.png';
+$logo_right = __DIR__ . '/../../resources/images/evenbrighter.png';
+
 
     // Header with logos - adjusted positioning and size
     $pdf->SetFont('Arial', 'B', 12);
