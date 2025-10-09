@@ -1,0 +1,6 @@
+vendor/
+template/
+plugins/
+dist/
+/.env
+database/
