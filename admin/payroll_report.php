@@ -236,16 +236,7 @@ require './includes/partial.head.php';
   background-color: var(--primary-color);
 }
 
-/* Modal enhancements */
-.modal-header {
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-  color: white;
-  border-radius: 10px 10px 0 0;
-}
 
-.modal-footer .btn {
-  margin-left: 8px;
-}
 
 /* Print form styling */
 .print-form-container {
@@ -406,6 +397,11 @@ require './includes/partial.head.php';
     font-weight: 600;
     color: var(--dark-color);
 }
+
+/* Stats card styling */
+.stats-card {
+    margin-bottom: 20px;
+}
 </style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -549,7 +545,7 @@ $qry->execute($params);
                    <!-- Statistics Section -->
 <div class="row mb-4">
     <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
+        <div class="small-box bg-info stats-card">
             <div class="inner">
                 <h3><?= $overallStats['total_schools'] ?? 0 ?></h3>
                 <p>Total Schools/Campuses</p>
@@ -560,7 +556,7 @@ $qry->execute($params);
         </div>
     </div>
     <div class="col-lg-3 col-6">
-        <div class="small-box bg-success">
+        <div class="small-box bg-success stats-card">
             <div class="inner">
                 <h3><?= $overallStats['total_applicants'] ?? 0 ?></h3>
                 <p>Total Applicants</p>
@@ -571,7 +567,7 @@ $qry->execute($params);
         </div>
     </div>
     <div class="col-lg-3 col-6">
-        <div class="small-box bg-warning">
+        <div class="small-box bg-warning stats-card">
             <div class="inner">
                 <h3>₱<?= number_format($overallStats['total_amount'] ?? 0, 2) ?></h3>
                 <p>Total Amount</p>
@@ -582,7 +578,7 @@ $qry->execute($params);
         </div>
     </div>
     <div class="col-lg-3 col-6">
-        <div class="small-box bg-danger">
+        <div class="small-box bg-danger stats-card">
             <div class="inner">
                 <h3><?= count($schoolStats) ?></h3>
                 <p>Schools with Applicants</p>
@@ -684,7 +680,7 @@ $qry->execute($params);
                                                         <option value="">-- All Semesters --</option>
                                                         <option value="1st Semester">1st Semester</option>
                                                         <option value="2nd Semester">2nd Semester</option>
-                                                        <option value="Summer">Summer</option>
+                                                      
                                                     </select>
                                                 </div>
 

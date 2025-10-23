@@ -124,35 +124,6 @@ require './includes/partial.head.php';
   color: white;
 }
 
-.modal-content {
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  border: none;
-}
-
-.modal-header {
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-  color: white;
-  border-radius: 10px 10px 0 0;
-  padding: 15px 20px;
-}
-
-.modal-header h5 {
-  margin: 0;
-  font-weight: 600;
-}
-
-.modal-body textarea {
-  min-height: 140px;
-  border-radius: 6px;
-  resize: vertical;
-}
-
-.modal-footer {
-  gap: .5rem;
-  border-top: 1px solid #e9ecef;
-  padding: 15px 20px;
-}
 
 .dataTables_wrapper .dataTables_filter input {
   border-radius: 6px;
@@ -405,7 +376,6 @@ $(document).ready(function() {
 
   // Update button colors on page load and when column visibility changes
   updateColumnVisibilityColors();
-  setInterval(updateColumnVisibilityColors, 500);
   
   // Add event listener for column visibility changes
   table.on('column-visibility', function() {
@@ -549,15 +519,7 @@ $(document).ready(function() {
                       </tr>
                       <?php } ?>
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Title</th>
-                        <th>Message</th>
-                        <th>Posted On</th>
-                        <th>Expires On</th>
-                        <th>Action</th>
-                      </tr>
-                    </tfoot>
+                  
                   </table>
                 </div>
               </div>

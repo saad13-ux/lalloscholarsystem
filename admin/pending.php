@@ -373,18 +373,7 @@ $(document).ready(function(){
                         </tr>
                       <?php } ?>
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Scholarship Type</th>
-                        <th>Name</th>
-                        <th>School Name</th>
-                        <th>Year Level</th>
-                        <th>School Year</th>
-                        <th>Semester</th>
-                        <th>Barangay</th>
-                        <th>Amount</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
                 </div>
               </div>

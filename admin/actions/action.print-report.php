@@ -59,14 +59,8 @@ if (isset($_POST['print_report'])) {
         $selected_barangay = null;
     }
 
-    // --- Semester filter (optional)
-    if (!empty($_POST['semester'])) {
-        $sql .= " AND a.semester = :semester";
-        $params['semester'] = $_POST['semester'];
-        $selected_semester = $_POST['semester'];
-    } else {
-        $selected_semester = null;
-    }
+    // --- Semester selection (FOR DISPLAY ONLY - NO FILTERING)
+    $selected_semester = !empty($_POST['semester']) ? $_POST['semester'] : null;
 
     $sql .= " ORDER BY a.barangay ASC, a.b_fname ASC";
 
@@ -77,9 +71,8 @@ if (isset($_POST['print_report'])) {
     $pdf = new FPDF('L', 'mm', 'A4');
     $pdf->AddPage();
 
-   $logo_left  = __DIR__ . '/../../resources/images/lgulallo.png';
-$logo_right = __DIR__ . '/../../resources/images/evenbrighter.png';
-
+    $logo_left  = __DIR__ . '/../../resources/images/lgulallo.png';
+    $logo_right = __DIR__ . '/../../resources/images/evenbrighter.png';
 
     // Header with logos - adjusted positioning and size
     $pdf->SetFont('Arial', 'B', 12);
@@ -168,6 +161,7 @@ $logo_right = __DIR__ . '/../../resources/images/evenbrighter.png';
     // Table rows
     $i = 1;
     $total_amount = 0;
+    
     while ($row = $qry->fetch(PDO::FETCH_ASSOC)) {
         // Format name as "Last Name, First Name M.I."
         $name = $row['b_mname'] != '' 

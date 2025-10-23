@@ -222,9 +222,16 @@ require './includes/partial.head.php';
                                     
                                     <div class="mt-auto">
                                         <?php 
-                                            $userId = $_SESSION[$session_prefix . 'user_id'];
-                                            $hasSubmitted = false;
+                                        // Safely get user_id from session using your defined session variables
+                                        $userId = null;
+                                        $hasSubmitted = false;
 
+                                        // Check if session variables are defined and exist in $_SESSION
+                                        if (isset($session_user_id) && isset($_SESSION[$session_user_id])) {
+                                            $userId = $_SESSION[$session_user_id];
+                                        }
+
+                                        if ($userId) {
                                             $submissionSql = "SELECT * FROM user_application WHERE user_id = :userId AND scholarship_id = :scholarshipId";
                                             $submissionStmt = $pdo->prepare($submissionSql);
                                             $submissionStmt->bindParam(':userId', $userId);
@@ -234,6 +241,7 @@ require './includes/partial.head.php';
                                             if ($submissionStmt->fetch(PDO::FETCH_ASSOC)) {
                                                 $hasSubmitted = true;
                                             }
+                                        }
                                         ?>
                                         
                                         <div class="d-flex justify-content-between align-items-center">
@@ -251,7 +259,6 @@ require './includes/partial.head.php';
                                                     <i class='fas fa-check-circle mr-2'></i> Application Submitted
                                                 </button>
                                             <?php } ?>
-                                           
                                         </div>
                                     </div>
                                 </div>

@@ -370,39 +370,7 @@ require './includes/partial.head.php';
   border-left: 4px solid #28a745;
 }
 
-/* Modal enhancements */
-.modal-content {
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: none;
-}
 
-.modal-header {
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-  color: white;
-  border-radius: 12px 12px 0 0;
-  padding: 20px;
-}
-
-.modal-header .close {
-  color: white;
-  opacity: 0.8;
-  text-shadow: none;
-}
-
-.modal-header .close:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.modal-body {
-  padding: 25px;
-}
-
-.modal-footer {
-  border-top: 1px solid #e9ecef;
-  padding: 20px;
-}
 
 /* Statistics Cards */
 .small-box {
@@ -752,18 +720,7 @@ require './includes/partial.head.php';
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Type</th>
-                                                    <th>Name</th>
-                                                    <th>Date Applied</th>
-                                                    <th>Scholarship Type</th>
-                                                    <th>Barangay</th>
-                                                    <th>School Year</th>
-                                                    <th>Status</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </tfoot>
+                                           
                                         </table>
                                     </div>
                                 </div>

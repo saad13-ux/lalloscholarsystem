@@ -84,27 +84,20 @@ if (isset($_POST['login_user'])) {
                 // Clear IP attempts
                 $pdo->prepare("DELETE FROM ip_details")->execute();
 
-                // Set session
-                // Set session
-foreach ($account as $key => $value) {
-    if ($key == 'password') continue;
-    $_SESSION[$session_prefix . $key] = $value;
-}
+                // Set session with SIMPLE NAMES
+                foreach ($account as $key => $value) {
+                    if ($key == 'password') continue;
+                    $_SESSION[$key] = $value; // Simple session variable names
+                }
 
-// Add a plain session for easier navbar checks
-if (isset($_SESSION[$session_user_id])) {
-    $_SESSION['user_id'] = $_SESSION[$session_user_id];
-}
-
-$_SESSION['success'] = "Successfully logged in as $username.";
-
+                $_SESSION['success'] = "Successfully logged in as $username.";
 
                 // ===== Email verification step =====
-                if (!$_SESSION[$session_email_verified]) {
+                if (!$_SESSION['email_verified']) {
                     $r_code = generateRandomCode();
 
                     // Save verification code
-                    $params = ['email_vcode' => $r_code, 'user_id' => $_SESSION[$session_user_id]];
+                    $params = ['email_vcode' => $r_code, 'user_id' => $_SESSION['user_id']];
                     $query = $pdo->prepare($set_user_email_vcode);
                     $res = $query->execute($params);
                     if (!($res && $query->rowCount() == 1)) {
@@ -112,7 +105,7 @@ $_SESSION['success'] = "Successfully logged in as $username.";
                         exit();
                     }
 
-                    $_SESSION[$session_email_vcode] = $r_code;
+                    $_SESSION['email_vcode'] = $r_code;
 
                     // Prepare HTML email
                     $htmlBody = "
@@ -127,7 +120,7 @@ $_SESSION['success'] = "Successfully logged in as $username.";
                                                 <h1>Verification Code</h1>
                                                 <p>Please use the code below to verify your login:</p>
                                                 <p style='font-size:130%; font-weight:bold;'>$r_code</p>
-                                                <p>If you didn’t request this, you can ignore this email.</p>
+                                                <p>If you didn't request this, you can ignore this email.</p>
                                                 <p>Thanks,<br>Local Government Unit of Lal-lo</p>
                                             </td>
                                         </tr>
@@ -139,7 +132,7 @@ $_SESSION['success'] = "Successfully logged in as $username.";
                     </body>
                     </html>";
 
-                    $sent = sendEmail($_SESSION[$session_email], $username, 'Verify your login', $htmlBody);
+                    $sent = sendEmail($_SESSION['email'], $username, 'Verify your login', $htmlBody);
 
                     if ($sent) {
                         header('Location: ../verification.php');
@@ -189,3 +182,4 @@ $_SESSION['success'] = "Successfully logged in as $username.";
         exit();
     }
 }
+?>

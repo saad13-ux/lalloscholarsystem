@@ -438,58 +438,69 @@ summary:hover {
                     <div class="row">
                         <?php
                         $i = 1;
-                        $stmt = $pdo->query(
-                            "SELECT * FROM user_application AS ua 
-                            INNER JOIN scholarship AS s ON ua.scholarship_id = s.scholarship_id 
-                            INNER JOIN user AS u ON ua.user_id = u.user_id  
-                            WHERE u.user_id = '$_SESSION[$session_user_id]' 
-                            ORDER BY ua.application_id DESC"
-                        );
+                        // Safely get user_id from session using your defined session variables
+                        $current_user_id = null;
                         
-                        if ($stmt->rowCount() > 0) {
-                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                $timestamp = strtotime($row['date_applied']);
-                                $formattedDate = date('F d, Y h:i A', $timestamp);
+                        // Check if session variables are defined and exist in $_SESSION
+                        if (isset($session_user_id) && isset($_SESSION[$session_user_id])) {
+                            $current_user_id = $_SESSION[$session_user_id];
+                        }
+                        
+                        if ($current_user_id) {
+                            $stmt = $pdo->prepare(
+                                "SELECT * FROM user_application AS ua 
+                                INNER JOIN scholarship AS s ON ua.scholarship_id = s.scholarship_id 
+                                INNER JOIN user AS u ON ua.user_id = u.user_id  
+                                WHERE u.user_id = :user_id 
+                                ORDER BY ua.application_id DESC"
+                            );
+                            $stmt->bindParam(':user_id', $current_user_id);
+                            $stmt->execute();
+                            
+                            if ($stmt->rowCount() > 0) {
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    $timestamp = strtotime($row['date_applied']);
+                                    $formattedDate = date('F d, Y h:i A', $timestamp);
 
-                                $timestampapproved = strtotime($row['approved_datetime']);
-                                $formattedDateapproved = date('F d, Y h:i A', $timestampapproved);
+                                    $timestampapproved = strtotime($row['approved_datetime']);
+                                    $formattedDateapproved = date('F d, Y h:i A', $timestampapproved);
 
-                                $timestampdeclined = strtotime($row['declined_datetime']);
-                                $formattedDatedeclined = date('F d, Y h:i A', $timestampdeclined);
+                                    $timestampdeclined = strtotime($row['declined_datetime']);
+                                    $formattedDatedeclined = date('F d, Y h:i A', $timestampdeclined);
 
-                                $timestampongoing = strtotime($row['ongoing_datetime']);
-                                $formattedDateongoing = date('F d, Y h:i A', $timestampongoing);
+                                    $timestampongoing = strtotime($row['ongoing_datetime']);
+                                    $formattedDateongoing = date('F d, Y h:i A', $timestampongoing);
 
-                                $timestampclaimed = strtotime($row['claimed_datetime']);
-                                $formattedDateclaimed = date('F d, Y h:i A', $timestampclaimed);
+                                    $timestampclaimed = strtotime($row['claimed_datetime']);
+                                    $formattedDateclaimed = date('F d, Y h:i A', $timestampclaimed);
 
-                                $progressStatus = '';
-                                $percentage = 0;
-                                $statusClass = '';
-
-                                if ($row['approved'] == '3') {
-                                    $progressStatus = 'PENDING';
-                                    $percentage = 50;
-                                    $statusClass = 'status-pending';
-                                } else if ($row['approved'] == '1') {
-                                    if ($row['claimed'] == '1') {
-                                        $progressStatus = 'COMPLETED';
-                                        $percentage = 100;
-                                        $statusClass = 'status-completed';
-                                    } else {
-                                        $progressStatus = 'APPROVED';
-                                        $percentage = 75;
-                                        $statusClass = 'status-approved';
-                                    }
-                                } else if ($row['approved'] == '2') {
-                                    $progressStatus = 'DECLINED';
+                                    $progressStatus = '';
                                     $percentage = 0;
-                                    $statusClass = 'status-declined';
-                                } else {
-                                    $progressStatus = 'SUBMITTED';
-                                    $percentage = 25;
-                                    $statusClass = 'status-submitted';
-                                }
+                                    $statusClass = '';
+
+                                    if ($row['approved'] == '3') {
+                                        $progressStatus = 'PENDING';
+                                        $percentage = 50;
+                                        $statusClass = 'status-pending';
+                                    } else if ($row['approved'] == '1') {
+                                        if ($row['claimed'] == '1') {
+                                            $progressStatus = 'COMPLETED';
+                                            $percentage = 100;
+                                            $statusClass = 'status-completed';
+                                        } else {
+                                            $progressStatus = 'APPROVED';
+                                            $percentage = 75;
+                                            $statusClass = 'status-approved';
+                                        }
+                                    } else if ($row['approved'] == '2') {
+                                        $progressStatus = 'DECLINED';
+                                        $percentage = 0;
+                                        $statusClass = 'status-declined';
+                                    } else {
+                                        $progressStatus = 'SUBMITTED';
+                                        $percentage = 25;
+                                        $statusClass = 'status-submitted';
+                                    }
                         ?>
                         <div class="col-md-4">
                             <div class="card status-update">
@@ -584,7 +595,7 @@ summary:hover {
                                                                 </div>
                                                                 <div class="timeline-body">
                                                                     <p> Hello, Once again, we thank you for your time and interest in applying with us. Unfortunately, we have decided not to move forward with your application at this time. However, we have a great suggestion on how you can still apply. Try reading other application program and apply now.
-You can learn more about on our website. All the best, Lal-lo Shines Even Brighte</p>
+You can learn more about on our website. All the best, Lal-lo Shines Even Brighter</p>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -596,7 +607,7 @@ You can learn more about on our website. All the best, Lal-lo Shines Even Bright
                                                                     <p><small class="text-muted"><i class="fa fa-calendar"></i> <?= $formattedDatedeclined ?></small></p>
                                                                 </div>
                                                                 <div class="timeline-body">
-                                                                    <p>Your application cannot proceed further as it has been declined.</p>
+                                                                    <p>Sorry, To inform you that your application for scholarship assistance has been declined cannot proceed the process.</p>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -688,7 +699,7 @@ You can learn more about on our website. All the best, Lal-lo Shines Even Bright
                                                                     <p><small class="text-muted"><i class="fa fa-calendar"></i> <?= $formattedDateclaimed ?></small></p>
                                                                 </div>
                                                                 <div class="timeline-body">
-                                                                    <p>Your scholarship has been successfully claimed. Congratulations!</p>
+                                                                    <p>Your scholarship has been successfully claimed. Check the announcement section for the announced claim date . Congratulations!</p>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -800,16 +811,28 @@ You can learn more about on our website. All the best, Lal-lo Shines Even Bright
                                 $i++;
                             }
                         } else {
-                        ?>
-                        <div class="col-12">
-                            <div class="empty-state">
-                                <i class="fas fa-file-alt"></i>
-                                <h3>No Applications Found</h3>
-                                <p class="mb-4">You haven't submitted any scholarship applications yet.</p>
-                                
+                            ?>
+                            <div class="col-12">
+                                <div class="empty-state">
+                                    <i class="fas fa-file-alt"></i>
+                                    <h3>No Applications Found</h3>
+                                    <p class="mb-4">You haven't submitted any scholarship applications yet.</p>
+                                </div>
                             </div>
-                        </div>
-                        <?php } ?>
+                            <?php 
+                        } 
+                        } else {
+                            ?>
+                            <div class="col-12">
+                                <div class="empty-state">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <h3>Session Expired</h3>
+                                    <p class="mb-4">Please log in to view your application status.</p>
+                                </div>
+                            </div>
+                            <?php 
+                        }
+                        ?>
                     </div>
                 </div>
             </section>

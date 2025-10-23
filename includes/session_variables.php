@@ -4,42 +4,40 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Define session variable names with prefixes
-$db_name = 'data_database_scholarshipedit'; // Make sure this is defined
-$session_prefix = $db_name . '.user.';
+// Simple session variable names that match your login system
+$session_user_id = "user_id";
+$session_username = "username";
+$session_email = "email";
+$session_fname = "first_name";
+$session_mname = "middle_name";
+$session_lname = "last_name";
+$session_ext_name = "ext_name";
+$session_gender = "gender";
+$session_dob = "dob";
+$session_email_verified = "email_verified";
+$session_email_vcode = "email_vcode";
+$session_reg_complete = "registration_complete";
+$session_mobile = "mobile_no";
+$session_civil_status = "civil_status";
+$session_nationality = "nationality";
+$session_religion = "religion";
+$session_highest_education = "highest_education";
 
-// Set individual session variable names
-$session_user_id = $session_prefix . "user_id";
-$session_username = $session_prefix . "username";
-$session_email = $session_prefix . "email";
-$session_fname = $session_prefix . "first_name";
-$session_mname = $session_prefix . "middle_name";
-$session_lname = $session_prefix . "last_name";
-$session_ext_name = $session_prefix . "ext_name";
-$session_gender = $session_prefix . "gender";
-$session_dob = $session_prefix . "dob";
-$session_email_verified = $session_prefix . "email_verified";
-$session_email_vcode = $session_prefix . "email_vcode";
-$session_reg_complete = $session_prefix . "registration_complete";
-$session_mobile = $session_prefix . "mobile_no";
-$session_civil_status = $session_prefix . "civil_status";
-$session_nationality = $session_prefix . "nationality";
-$session_religion = $session_prefix . "religion";
-$session_highest_education = $session_prefix . "highest_education";
-
-// Add address-related session variables
-$session_barangay = $session_prefix . "barangay";
-$session_municipality = $session_prefix . "municipality";
-$session_province = $session_prefix . "province";
-$session_region = $session_prefix . "region";
+// Address-related session variables
+$session_barangay = "barangay";
+$session_municipality = "municipality";
+$session_province = "province";
+$session_region = "region";
+$session_address = "address"; // Add this missing variable
 
 // Academic session variables
-$session_school_name = $session_prefix . "school_name";
-$session_school_year = $session_prefix . "school_year";
-$session_year_level = $session_prefix . "year_level";
-$session_semester = $session_prefix . "semester";
+$session_school_name = "school_name";
+$session_school_year = "school_year";
+$session_year_level = "year_level";
+$session_semester = "semester";
 
 // Other personal info
-$session_pob = $session_prefix . "pob";
-$session_monthly_income = $session_prefix . "monthly_income";
+$session_pob = "pob";
+$session_monthly_income = "monthly_income";
+$session_skills_occupation = "skill_occupation"; // Add this missing variable
 ?>

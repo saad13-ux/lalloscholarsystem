@@ -186,26 +186,7 @@ require './includes/partial.head.php';
   font-weight: 500;
 }
 
-/* Modal enhancements */
-.modal-content {
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
 
-.modal-header {
-  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-  color: white;
-  border-radius: 10px 10px 0 0;
-}
-
-.modal-header .close {
-  color: white;
-  opacity: 0.8;
-}
-
-.modal-header .close:hover {
-  opacity: 1;
-}
 
 /* COLUMN VISIBILITY BUTTON STYLING - GREEN (#27ae60) */
 .buttons-columnVisibility.active,
@@ -640,18 +621,7 @@ tr.selected::after {
                       </tr>
                       <?php } ?>
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th></th>
-                        <th>Scholarship Type</th>
-                        <th>Name</th>
-                        <th>Barangay</th>
-                        <th>Amount</th>
-                        <th>Claim Date</th>
-                        <th>Remarks</th>
-                        <th>Action</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
                 </div>
               </div>
@@ -725,16 +695,12 @@ $(document).ready(function() {
     columnDefs: [
       { orderable: false, targets: [0, 7] }
     ],
-    order: [[1, 'asc'], [2, 'asc']],
-    initComplete: function() {
-      // Apply custom styling to buttons after table initialization
-      this.api().buttons().container().appendTo('#applicationTable_wrapper .col-md-6:eq(0)');
-      
-      // Initialize column visibility button colors
-      updateColumnVisibilityColors();
-    }
+    order: [[1, 'asc'], [2, 'asc']]
   });
 
+  // Apply custom styling to buttons after table initialization
+  table.buttons().container().appendTo('#applicationTable_wrapper .col-md-6:eq(0)');
+  
   // Function to update column visibility button colors
   function updateColumnVisibilityColors() {
     $('.buttons-columnVisibility').each(function(){

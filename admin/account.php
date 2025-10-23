@@ -407,22 +407,7 @@ $(document).ready(function(){
         className: 'btn btn-light',
         text: '<i class="fas fa-columns"></i> Columns'
       }
-    ],
-    initComplete: function () {
-      // Apply search to all footer inputs
-      this.api().columns().every(function () {
-        var column = this;
-        var title = $(column.header()).text();
-        
-        if (title !== 'Profile' && title !== 'Status' && title !== 'Action') {
-          $('input', this.footer()).on('keyup change clear', function () {
-            if (column.search() !== this.value) {
-              column.search(this.value).draw();
-            }
-          });
-        }
-      });
-    }
+    ]
   });
 
   // Apply custom styling to buttons after table initialization

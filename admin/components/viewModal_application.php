@@ -1,3 +1,16 @@
+<?php
+// Detect the application root dynamically
+$current_path = $_SERVER['PHP_SELF'];
+$root_path = '/lalloscholarsystem'; // Default, adjust based on your URL structure
+
+// If the current path contains the application folder, extract it
+if (strpos($current_path, '/lalloscholarsystem/') !== false) {
+    $parts = explode('/lalloscholarsystem/', $current_path);
+    $root_path = '/lalloscholarsystem';
+}
+
+$logo_url = $root_path . "/resources/images/lgulallo.png";
+?>
 <style type="text/css">
     #pds-table {
     width: 100%;
@@ -49,6 +62,12 @@
 @media print {
 
 }
+
+
+
+
+
+
 </style>
 <?php
 
@@ -489,10 +508,13 @@ function printContent() {
 
     let tableContent = document.getElementById('pds-table').outerHTML;
 
-    // Fix logo path (absolute path)
+    // Use PHP-generated logo URL
+    const logoUrl = '<?= $logo_url ?>';
+    
+    // Fix logo path
     tableContent = tableContent.replace(
         '../resources/images/lgulallo.png',
-        'http://localhost/lalloscholarsystem/resources/images/lgulallo.png'
+        logoUrl
     );
 
     printWindow.document.write(`

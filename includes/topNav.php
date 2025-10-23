@@ -177,10 +177,10 @@
                 <label for="ext_name">Extension Name</label>
                 <select name="ext_name" class="form-control">
                     <option value="" selected>Suffix</option>
-                    <option value="Jr." <?= $_SESSION[$session_prefix . 'ext_name'] == 'Jr.' ? 'selected' : '' ?>>Jr.</option>
-                    <option value="Sr." <?= $_SESSION[$session_prefix . 'ext_name'] == 'Sr.' ? 'selected' : '' ?>>Sr.</option>
-                    <option value="II" <?= $_SESSION[$session_prefix . 'ext_name'] == 'II.' ? 'selected' : '' ?>>II</option>
-                    <option value="III" <?= $_SESSION[$session_prefix . 'ext_name'] == 'III.' ? 'selected' : '' ?>>III</option>
+                    <option value="Jr." <?= ($_SESSION['ext_name'] ?? '') == 'Jr.' ? 'selected' : '' ?>>Jr.</option>
+                    <option value="Sr." <?= ($_SESSION['ext_name'] ?? '') == 'Sr.' ? 'selected' : '' ?>>Sr.</option>
+                    <option value="II" <?= ($_SESSION['ext_name'] ?? '') == 'II' ? 'selected' : '' ?>>II</option>
+                    <option value="III" <?= ($_SESSION['ext_name'] ?? '') == 'III' ? 'selected' : '' ?>>III</option>
                 </select>
             </div>
         </div>
@@ -191,13 +191,13 @@
                 <label for="gender">Sex</label>
                 <select name="gender" class="form-control">
                     <option value="" disabled selected>-- SELECT --</option>
-                    <option value="Male" <?= $_SESSION[$session_prefix . 'gender'] == 'Male' ? 'selected' : '' ?>>Male</option>
-                    <option value="Female" <?= $_SESSION[$session_prefix . 'gender'] == 'Female' ? 'selected' : '' ?>>Female</option>
+                    <option value="Male" <?= ($_SESSION['gender'] ?? '') == 'Male' ? 'selected' : '' ?>>Male</option>
+                    <option value="Female" <?= ($_SESSION['gender'] ?? '') == 'Female' ? 'selected' : '' ?>>Female</option>
                 </select>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="dob">Date of Birth</label>
-                <input class="form-control" type="date" name="dob" value="<?= $_SESSION[$session_prefix . 'dob'] ?? '' ?>">
+                <input class="form-control" type="date" name="dob" value="<?= $_SESSION['dob'] ?? '' ?>">
             </div>
         </div>
     </div>
@@ -205,7 +205,7 @@
         <div class="row">
         <div class="col-md-12 mb-3">
                 <label for="dob">Address</label>
-                <input class="form-control" type="text" name="address" value="<?= $_SESSION[$session_prefix . 'address'] ?? '' ?>">
+                <input class="form-control" type="text" name="address" value="<?= $_SESSION['address'] ?? '' ?>">
             </div>
         </div>
     </div>
@@ -214,11 +214,11 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="contact_number">Contact Number</label>
-                <input class="form-control" type="number" name="mobile_no" value="<?= $_SESSION[$session_prefix . 'mobile_no'] ?? '' ?>" minlenght="11">
+                <input class="form-control" type="number" name="mobile_no" value="<?= $_SESSION['mobile_no'] ?? '' ?>" minlenght="11">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="nationality">Nationality</label>
-                <input class="form-control" type="text" name="nationality" value="<?= $_SESSION[$session_prefix . 'nationality'] ?? '' ?>">
+                <input class="form-control" type="text" name="nationality" value="<?= $_SESSION['nationality'] ?? '' ?>">
             </div>
         </div>
     </div>
@@ -227,17 +227,17 @@
         <div class="form-row">
              <div class="col-md-6 mb-3">
                 <label for="religion">Religion</label>
-                <input class="form-control" type="text" name="religion" value="<?= $_SESSION[$session_prefix . 'religion'] ?? '' ?>">
+                <input class="form-control" type="text" name="religion" value="<?= $_SESSION['religion'] ?? '' ?>">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="civil_status">Civil Status</label>
                 <select class="form-control" name="civil_status" id="civil_status">
                     <option selected disabled value="">-- SELECT ---</option>
-                    <option value="Single" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Single' ? 'selected' : '' ?>>Single</option>
-                    <option value="Married" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Married' ? 'selected' : '' ?>>Married</option>
-                    <option value="Annulled" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Annulled' ? 'selected' : '' ?>>Annulled</option>
-                    <option value="Divorced" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Divorced' ? 'selected' : '' ?>>Divorced</option>
-                    <option value="Widowed" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Widowed' ? 'selected' : '' ?>>Widowed</option>
+                    <option value="Single" <?= ($_SESSION['civil_status'] ?? '') == 'Single' ? 'selected' : '' ?>>Single</option>
+                    <option value="Married" <?= ($_SESSION['civil_status'] ?? '') == 'Married' ? 'selected' : '' ?>>Married</option>
+                    <option value="Annulled" <?= ($_SESSION['civil_status'] ?? '') == 'Annulled' ? 'selected' : '' ?>>Annulled</option>
+                    <option value="Divorced" <?= ($_SESSION['civil_status'] ?? '') == 'Divorced' ? 'selected' : '' ?>>Divorced</option>
+                    <option value="Widowed" <?= ($_SESSION['civil_status'] ?? '') == 'Widowed' ? 'selected' : '' ?>>Widowed</option>
                 </select>
             </div>
         </div>
@@ -246,12 +246,12 @@
         <div class="form-row">
             <div class=" col-md-6 mb-3">
                 <label for="highest_education">Highest Education</label>
-                <input class="form-control" type="text" name="highest_education" value="<?= $_SESSION[$session_prefix . 'highest_education'] ?? '' ?>">
+                <input class="form-control" type="text" name="highest_education" value="<?= $_SESSION['highest_education'] ?? '' ?>">
             </div>
         
             <div class="col-md-6 mb-3">
                 <label for="skill_occupation">Skills/Occupation</label>
-                <input class="form-control" type="text" name="skill_occupation" value="<?= $_SESSION[$session_prefix . 'skill_occupation'] ?? '' ?>">
+                <input class="form-control" type="text" name="skill_occupation" value="<?= $_SESSION['skill_occupation'] ?? '' ?>">
             </div>
         </div>
     </div>

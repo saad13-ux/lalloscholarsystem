@@ -196,31 +196,6 @@ require './includes/partial.head.php';
 }
 </style>
 
-<script>
-$(document).ready(function(){
-  function updateColumnVisibilityColors(){
-    $('.buttons-columnVisibility').each(function(){
-      if ($(this).hasClass('active')) {
-        $(this).css({
-          'background-color':'#198754',
-          'color':'#fff',
-          'border-color':'#198754'
-        });
-      } else {
-        $(this).css({
-          'background-color':'',
-          'color':'',
-          'border-color':''
-        });
-      }
-    });
-  }
-
-  // Start interval when page loads; keeps checking
-  setInterval(updateColumnVisibilityColors, 200);
-});
-</script>
-
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
@@ -274,7 +249,6 @@ $(document).ready(function(){
             <h3 class="card-title mb-0">
                 <i class="fas fa-users mr-2"></i>Admin Accounts 
             </h3>
-    
         </div>
         <div>
             <button class="btn btn-success" data-toggle="modal" data-target="#addprofile">
@@ -317,14 +291,6 @@ $(document).ready(function(){
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Profile</th>
-                                                    <th>Username</th>
-                                                    <th>Email</th>
-                                                    <th>Name</th>
-                                                </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -395,18 +361,7 @@ $(document).ready(function(){
                     className: 'btn btn-light',
                     text: '<i class="fas fa-columns"></i> Columns'
                 }
-            ],
-            initComplete: function () {
-                // Add search functionality to footer
-                this.api().columns().every(function () {
-                    var column = this;
-                    $('input', this.footer()).on('keyup change clear', function () {
-                        if (column.search() !== this.value) {
-                            column.search(this.value).draw();
-                        }
-                    });
-                });
-            }
+            ]
         });
 
         // Apply custom styling to buttons after table initialization
@@ -433,7 +388,6 @@ $(document).ready(function(){
 
         // Update button colors on page load and when column visibility changes
         updateColumnVisibilityColors();
-        setInterval(updateColumnVisibilityColors, 500);
         
         // Add event listener for column visibility changes
         table.on('column-visibility', function() {

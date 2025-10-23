@@ -374,10 +374,10 @@ include 'includes/session_variables.php';
                         <label for="ext_name">Extension Name</label>
                         <select name="ext_name">
                             <option value="" disabled selected>Select Suffix</option>
-                            <option value="Jr." <?= $_SESSION[$session_prefix . 'ext_name'] == 'Jr.' ? 'selected' : '' ?>>Jr.</option>
-                            <option value="Sr." <?= $_SESSION[$session_prefix . 'ext_name'] == 'Sr.' ? 'selected' : '' ?>>Sr.</option>
-                            <option value="II" <?= $_SESSION[$session_prefix . 'ext_name'] == 'II.' ? 'selected' : '' ?>>II</option>
-                            <option value="III" <?= $_SESSION[$session_prefix . 'ext_name'] == 'III.' ? 'selected' : '' ?>>III</option>
+                            <option value="Jr." <?= $_SESSION[$session_ext_name] == 'Jr.' ? 'selected' : '' ?>>Jr.</option>
+                            <option value="Sr." <?= $_SESSION[$session_ext_name] == 'Sr.' ? 'selected' : '' ?>>Sr.</option>
+                            <option value="II" <?= $_SESSION[$session_ext_name] == 'II' ? 'selected' : '' ?>>II</option>
+                            <option value="III" <?= $_SESSION[$session_ext_name] == 'III' ? 'selected' : '' ?>>III</option>
                         </select>
                     </div>
                 </div>
@@ -395,34 +395,34 @@ include 'includes/session_variables.php';
                     <div class="form-col">
                         <label for="gender" class="required-field">Sex</label>
                         <select required name="gender">
-                            <option value="" disabled selected>Select Gender</option>
-                            <option value="Male" <?= $_SESSION[$session_prefix . 'gender'] == 'Male' ? 'selected' : '' ?>>Male</option>
-                            <option value="Female" <?= $_SESSION[$session_prefix . 'gender'] == 'Female' ? 'selected' : '' ?>>Female</option>
+                            <option value="" disabled selected>Select Sex</option>
+                            <option value="Male" <?= $_SESSION[$session_gender] == 'Male' ? 'selected' : '' ?>>Male</option>
+                            <option value="Female" <?= $_SESSION[$session_gender] == 'Female' ? 'selected' : '' ?>>Female</option>
                         </select>
                     </div>
                     <div class="form-col">
                         <label for="dob" class="required-field">Date of Birth</label>
-                        <input required type="date" name="dob" placeholder="Select your date of birth">
+                        <input required type="date" name="dob" placeholder="Select your date of birth" value="<?= $_SESSION[$session_dob] ?? '' ?>">
                        
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-col">
                         <label for="contact_number" class="required-field">Contact Number</label>
-                        <input required type="number" name="mobile_no" placeholder="Enter your contact number" minlength="11">
+                        <input required type="number" name="mobile_no" placeholder="Enter your contact number" minlength="11" value="<?= $_SESSION[$session_mobile] ?? '' ?>">
                     </div>
                     <div class="form-col">
                         <label for="nationality" class="required-field">Nationality</label>
                         <select required name="nationality">
                             <option value="" disabled selected>Select Nationality</option>
-                            <option value="Filipino" <?= $_SESSION[$session_prefix . 'nationality'] == 'Filipino' ? 'selected' : '' ?>>Filipino</option>
+                            <option value="Filipino" <?= $_SESSION[$session_nationality] == 'Filipino' ? 'selected' : '' ?>>Filipino</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-col-full">
                         <label for="address" class="required-field">Complete Address</label>
-                        <input required type="text" name="address" id="address" placeholder="Enter your complete address" value="">
+                        <input required type="text" name="address" id="address" placeholder="Enter your complete address" value="<?= $_SESSION[$session_address] ?? '' ?>">
                     </div>
                 </div>
                 
@@ -440,33 +440,33 @@ include 'includes/session_variables.php';
                         <label for="religion" class="required-field">Religion</label>
                         <select required name="religion">
                             <option value="" disabled selected>Select Religion</option>
-                            <option value="Roman Catholic">Roman Catholic</option>
-                            <option value="Islam">Islam</option>
-                            <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
-                            <option value="Protestant">Protestant</option>
-                            <option value="Baptist">Baptist</option>
-                            <option value="Methodist">Methodist</option>
-                            <option value="Seventh-day Adventist">Seventh-day Adventist</option>
-                            <option value="Mormon">Mormon</option>
-                            <option value="Jehovah's Witness">Jehovah's Witness</option>
-                            <option value="Buddhism">Buddhism</option>
-                            <option value="Hinduism">Hinduism</option>
-                            <option value="Judaism">Judaism</option>
-                            <option value="Aglipayan">Aglipayan</option>
-                            <option value="Evangelical">Evangelical</option>
-                            <option value="None">None</option>
-                            <option value="Other">Other</option>
+                            <option value="Roman Catholic" <?= $_SESSION[$session_religion] == 'Roman Catholic' ? 'selected' : '' ?>>Roman Catholic</option>
+                            <option value="Islam" <?= $_SESSION[$session_religion] == 'Islam' ? 'selected' : '' ?>>Islam</option>
+                            <option value="Iglesia ni Cristo" <?= $_SESSION[$session_religion] == 'Iglesia ni Cristo' ? 'selected' : '' ?>>Iglesia ni Cristo</option>
+                            <option value="Protestant" <?= $_SESSION[$session_religion] == 'Protestant' ? 'selected' : '' ?>>Protestant</option>
+                            <option value="Baptist" <?= $_SESSION[$session_religion] == 'Baptist' ? 'selected' : '' ?>>Baptist</option>
+                            <option value="Methodist" <?= $_SESSION[$session_religion] == 'Methodist' ? 'selected' : '' ?>>Methodist</option>
+                            <option value="Seventh-day Adventist" <?= $_SESSION[$session_religion] == 'Seventh-day Adventist' ? 'selected' : '' ?>>Seventh-day Adventist</option>
+                            <option value="Mormon" <?= $_SESSION[$session_religion] == 'Mormon' ? 'selected' : '' ?>>Mormon</option>
+                            <option value="Jehovah's Witness" <?= $_SESSION[$session_religion] == 'Jehovah\'s Witness' ? 'selected' : '' ?>>Jehovah's Witness</option>
+                            <option value="Buddhism" <?= $_SESSION[$session_religion] == 'Buddhism' ? 'selected' : '' ?>>Buddhism</option>
+                            <option value="Hinduism" <?= $_SESSION[$session_religion] == 'Hinduism' ? 'selected' : '' ?>>Hinduism</option>
+                            <option value="Judaism" <?= $_SESSION[$session_religion] == 'Judaism' ? 'selected' : '' ?>>Judaism</option>
+                            <option value="Aglipayan" <?= $_SESSION[$session_religion] == 'Aglipayan' ? 'selected' : '' ?>>Aglipayan</option>
+                            <option value="Evangelical" <?= $_SESSION[$session_religion] == 'Evangelical' ? 'selected' : '' ?>>Evangelical</option>
+                            <option value="None" <?= $_SESSION[$session_religion] == 'None' ? 'selected' : '' ?>>None</option>
+                            <option value="Other" <?= $_SESSION[$session_religion] == 'Other' ? 'selected' : '' ?>>Other</option>
                         </select>
                     </div>
                     <div class="form-col">
                         <label for="civil_status" class="required-field">Civil Status</label>
                         <select required name="civil_status" id="civil_status">
                             <option selected disabled value="">Select Civil Status</option>
-                            <option value="Single" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Single' ? 'selected' : '' ?>>Single</option>
-                            <option value="Married" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Married' ? 'selected' : '' ?>>Married</option>
-                            <option value="Annulled" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Annulled' ? 'selected' : '' ?>>Annulled</option>
-                            <option value="Divorced" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Divorced' ? 'selected' : '' ?>>Divorced</option>
-                            <option value="Widowed" <?= $_SESSION[$session_prefix . 'civil_status'] == 'Widowed' ? 'selected' : '' ?>>Widowed</option>
+                            <option value="Single" <?= $_SESSION[$session_civil_status] == 'Single' ? 'selected' : '' ?>>Single</option>
+                            <option value="Married" <?= $_SESSION[$session_civil_status] == 'Married' ? 'selected' : '' ?>>Married</option>
+                            <option value="Annulled" <?= $_SESSION[$session_civil_status] == 'Annulled' ? 'selected' : '' ?>>Annulled</option>
+                            <option value="Divorced" <?= $_SESSION[$session_civil_status] == 'Divorced' ? 'selected' : '' ?>>Divorced</option>
+                            <option value="Widowed" <?= $_SESSION[$session_civil_status] == 'Widowed' ? 'selected' : '' ?>>Widowed</option>
                         </select>
                     </div>
                 </div>
@@ -475,23 +475,23 @@ include 'includes/session_variables.php';
                         <label for="highest_education" class="required-field">Highest Education</label>
                         <select required name="highest_education">
                             <option value="" disabled selected>Select Highest Education</option>
-                            <option value="No Formal Education">No Formal Education</option>
-                            <option value="Elementary Level">Elementary Level</option>
-                            <option value="Elementary Graduate">Elementary Graduate</option>
-                            <option value="High School Level">High School Level</option>
-                            <option value="High School Graduate">High School Graduate</option>
-                           <option value="Senior High School Graduate">Senior High School Graduate</option>
-                            <option value="Vocational/Trade Course">Vocational/Trade Course</option>
-                            <option value="College Level">College Level</option>
-                            <option value="College Graduate">College Graduate</option>
-                            <option value="Post Graduate">Post Graduate</option>
-                            <option value="Master's Degree">Master's Degree</option>
-                            <option value="Doctorate Degree">Doctorate Degree</option>
+                            <option value="No Formal Education" <?= $_SESSION[$session_highest_education] == 'No Formal Education' ? 'selected' : '' ?>>No Formal Education</option>
+                            <option value="Elementary Level" <?= $_SESSION[$session_highest_education] == 'Elementary Level' ? 'selected' : '' ?>>Elementary Level</option>
+                            <option value="Elementary Graduate" <?= $_SESSION[$session_highest_education] == 'Elementary Graduate' ? 'selected' : '' ?>>Elementary Graduate</option>
+                            <option value="High School Level" <?= $_SESSION[$session_highest_education] == 'High School Level' ? 'selected' : '' ?>>High School Level</option>
+                            <option value="High School Graduate" <?= $_SESSION[$session_highest_education] == 'High School Graduate' ? 'selected' : '' ?>>High School Graduate</option>
+                           <option value="Senior High School Graduate" <?= $_SESSION[$session_highest_education] == 'Senior High School Graduate' ? 'selected' : '' ?>>Senior High School Graduate</option>
+                            <option value="Vocational/Trade Course" <?= $_SESSION[$session_highest_education] == 'Vocational/Trade Course' ? 'selected' : '' ?>>Vocational/Trade Course</option>
+                            <option value="College Level" <?= $_SESSION[$session_highest_education] == 'College Level' ? 'selected' : '' ?>>College Level</option>
+                            <option value="College Graduate" <?= $_SESSION[$session_highest_education] == 'College Graduate' ? 'selected' : '' ?>>College Graduate</option>
+                            <option value="Post Graduate" <?= $_SESSION[$session_highest_education] == 'Post Graduate' ? 'selected' : '' ?>>Post Graduate</option>
+                            <option value="Master's Degree" <?= $_SESSION[$session_highest_education] == 'Master\'s Degree' ? 'selected' : '' ?>>Master's Degree</option>
+                            <option value="Doctorate Degree" <?= $_SESSION[$session_highest_education] == 'Doctorate Degree' ? 'selected' : '' ?>>Doctorate Degree</option>
                         </select>
                     </div>
                     <div class="form-col">
                         <label for="skill_occupation" class="required-field">Skills/Occupation</label>
-                        <input required type="text" name="skill_occupation" placeholder="Enter your skills or occupation">
+                        <input required type="text" name="skill_occupation" placeholder="Enter your skills or occupation" value="<?= $_SESSION[$session_skills_occupation] ?? '' ?>">
                     </div>
                 </div>
                 
